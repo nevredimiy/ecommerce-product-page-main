@@ -16,6 +16,9 @@ export default {
       },
     },
     extend: {
+      backgroundImage: {
+        'cart-pattern': "url('./src/assets/images/icon-cart.svg')",
+      },
       colors: {
         'orangeColor': 'hsl(26, 100%, 55%)',
         'paleOrange': 'hsl(25, 100%, 94%)',

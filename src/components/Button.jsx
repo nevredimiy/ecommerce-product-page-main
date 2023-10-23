@@ -12,7 +12,8 @@ const Button = ({children}) => {
 }
 
 Button.propTypes = {
-    children: PropTypes.any
+  children: PropTypes.any,
+  addClass: PropTypes.string
 }
 
 export default Button

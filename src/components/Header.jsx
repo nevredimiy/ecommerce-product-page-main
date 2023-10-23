@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import {DataCartContext} from '../App'
 
 import iconMenu from '../assets/images/icon-menu.svg';
 import logo from '../assets/images/logo.svg';
@@ -8,20 +9,26 @@ import iconClose from '../assets/images/icon-close.svg'
 import CartModal from './CartModal';
 
 const Header = () => {
+  const {state} = useContext(DataCartContext)
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const handleCover = (e) => {
     if (e.target.id === 'cover') setShowMenu(false);
   }
+  const handleBurger = () => {
+    setShowMenu(!showMenu);
+    if(showCart) setShowCart(false)
+  }
+
   return (
     <header className='container flex justify-between pt-4 pb-6 sm:pb-8 border-b'>
       <div className="flex items-center gap-4">
-        <button onClick={() => setShowMenu(!showMenu)} className='sm:hidden'><img src={iconMenu} alt="Menu" /></button>
+        <button onClick={handleBurger} className='sm:hidden'><img src={iconMenu} alt="Menu" /></button>
         <a className="pr-6" href="/"><img src={logo} alt="Logo" /></a>
       </div>
       <div onClick={handleCover} id='cover' className={`
             ${showMenu ? 'h-screen' : 'h-0'} flex-auto sm:flex
-            fixed inset-0 z-10 bg-black/75 sm:bg-transparent
+            fixed inset-0 z-20 bg-black/75 sm:bg-transparent
             sm:static sm:h-auto
           `}>
         <nav className={`
@@ -76,7 +83,7 @@ const Header = () => {
       </div>
       <div className="flex items-center gap-4 sm:gap-6">
         <div className="cursor-pointer relative">
-          <div className="absolute z-0 -top-2 -right-2 rounded-lg bg-orangeColor px-[6px] text-center text-white text-[10px] font-bold">3</div>
+          {state.countCart!==0 && <div className="absolute z-0 -top-2 -right-2 rounded-lg bg-orangeColor px-[6px] text-center text-white text-[10px] font-bold">{state.countCart}</div>}
           <img onClick={() => setShowCart(!showCart)} className='cursor-pointer' src={iconCart} alt="Cart" />
           {showCart && <CartModal />}
         </div>
