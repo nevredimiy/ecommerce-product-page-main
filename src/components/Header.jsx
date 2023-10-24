@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
-import {DataCartContext} from '../App'
+import { DataCartContext } from '../App';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 import iconMenu from '../assets/images/icon-menu.svg';
 import logo from '../assets/images/logo.svg';
@@ -12,9 +13,17 @@ const Header = () => {
   const {state} = useContext(DataCartContext)
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
+
+  const onClose = () => {
+    setShowCart(false);
+  }
+  
+  const ref = useDetectClickOutside({ onTriggered: onClose });
+
   const handleCover = (e) => {
     if (e.target.id === 'cover') setShowMenu(false);
   }
+
   const handleBurger = () => {
     setShowMenu(!showMenu);
     if(showCart) setShowCart(false)
@@ -82,7 +91,7 @@ const Header = () => {
         </nav>
       </div>
       <div className="flex items-center gap-4 sm:gap-6">
-        <div className="cursor-pointer relative">
+        <div ref={ref} className="cursor-pointer relative">
           {state.countCart!==0 && <div className="absolute z-0 -top-2 -right-2 rounded-lg bg-orangeColor px-[6px] text-center text-white text-[10px] font-bold">{state.countCart}</div>}
           <img onClick={() => setShowCart(!showCart)} className='cursor-pointer' src={iconCart} alt="Cart" />
           {showCart && <CartModal />}
@@ -97,5 +106,7 @@ const Header = () => {
     </header>
   )
 }
+
+
 
 export default Header

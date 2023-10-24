@@ -13,6 +13,7 @@ This is a solution to the [E-commerce product page challenge on Frontend Mentor]
   - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
 - [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
 
 ## Overview
@@ -63,3 +64,10 @@ Repeated context and useReducer hooks. Learned new hooks react-detect-click-outs
 - Frontend Mentor - [@nevredimiy](https://www.frontendmentor.io/profile/nevredimiy)
 - Youtube - [@write-code](https://studio.youtube.com/channel/UCnmIQSMt8ayFgE2deKtAaKQ)
 
+**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+
+## Acknowledgments
+
+This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+
+**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**

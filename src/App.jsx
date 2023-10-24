@@ -1,4 +1,5 @@
-import {createContext, useReducer} from 'react'
+import { createContext, useReducer } from 'react';
+
 import Header from "./components/Header";
 import Main from "./components/Main";
 import reducer from './reducer'
@@ -14,11 +15,14 @@ const initialState = {
 }
 
 function App() {
-const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const closePopup = () => {
+    console.log('Popup closed');
+  };
 
   return (
     <DataCartContext.Provider value={{state, dispatch}}>
-      <Header />
+      <Header onClose={closePopup} />
       <Main />
     </DataCartContext.Provider>
   )
