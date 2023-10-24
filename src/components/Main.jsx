@@ -2,58 +2,43 @@ import { useContext, useState } from 'react';
 import {DataCartContext} from '../App'
 
 import Images from '../Images.jsx';
-import iconNext from '../assets/images/icon-next.svg';
-import iconPrevious from '../assets/images/icon-previous.svg';
 import iconMinus from '../assets/images/icon-minus.svg';
 import iconPlus from '../assets/images/icon-plus.svg';
 import Button from './Button.jsx';
+import LightboxModal from './LightboxModal';
+import SliderArrows from './sliderArrows';
 
 const Main = () => {
-  const [slideSteps, setSlideSteps] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
   const {state, dispatch} = useContext(DataCartContext);
 
-  const handlePrevious = () => {
-    setSlideSteps(slideSteps - 1);
-    if (0 >= slideSteps) {
-      setSlideSteps(3);
-    }
-  }
-
-  const handleNext = () => {
-    setSlideSteps(slideSteps + 1);
-    if (Images.length-1 <= slideSteps) {
-      setSlideSteps(0);
-    }
-  }
-
   return (
-    <main className='lg:grid grid-cols-2 place-items-center lg:pt-20 lg:px-16'>
-      <div className="overflow-hidden relative ">
-        <div className="">
-          <img className=' rounded-3xl' src={Images[slideSteps].image} alt="Product" />
+    <main className='lg:container lg:grid grid-cols-2 place-items-center lg:pt-20 xl:max-w-6xl lg:gap-x-12 xl:gap-x-32'>
+      <div className="relative ">
+        <div onClick={() => setLightbox(true)} className="lg:pb-10 lg:cursor-pointer">
+          <img className=' rounded-3xl' src={Images[state.sliderSteps].image} alt="Product" />
         </div>
+        {lightbox && <LightboxModal setLightbox={setLightbox} />}
+        <div className="hidden lg:grid gap-x-6 grid-cols-4">
+            {Images.map((image, index) => {
+              return (
+                   <div key={index} onClick={() => dispatch({ type: 'slideStepsThumbnail', index: index})} className={`${state.sliderSteps === index ? 'border-orangeColor opacity-75' : 'border-transparent' } cursor-pointer border-4 rounded-xl overflow-hidden`}>
+                    <img className='w-full'  src={image.thumbnail} alt="Product thumbnail" />
+                  </div>
+              )
+          })}
+        </div>
+
         <div className="
         flex justify-between
         absolute top-1/2 z-10 w-full px-4 -translate-y-1/2
         lg:hidden
         ">
-        <div onClick={handlePrevious} className="
-        w-10 h-10
-          bg-white flex justify-center items-center
-          rounded-full cursor-pointer hover:opacity-75
-        ">
-          <img className='h-4 pr-1' src={iconPrevious} alt="Previous" />
-        </div>
-        <div onClick={handleNext} className="w-10 h-10
-          bg-white flex justify-center items-center
-          rounded-full cursor-pointer hover:opacity-75
-          ">
-          <img className='h-4 pl-1' src={iconNext} alt="Next" />
-          </div>
+          <SliderArrows />
         </div>
       </div>
-      <div className="">
-        <div className="container py-4">
+      <div className="px-8">
+        <div className="py-4">
         <div className="uppercase text-orangeColor font-bold text-xs pb-2 tracking-wider lg:text-base">Sneaker company</div>
         <h2 className='text-black font-bold text-2xl pb-4 lg:text-4xl'>Fall Limited Edition Sneakers</h2>
         <div className="pb-6">These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they`ll withstand everything the weather can offer.</div>
@@ -65,7 +50,7 @@ const Main = () => {
             <span className='line-through font-bold'>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'}).format(state.oldPrice)}</span>
           </div>
         </div>
-        <div className="container lg:flex lg:items-center lg:gap-4">
+        <div className="lg:flex lg:items-center lg:gap-4">
         <div className="bg-lightGrayishBlue rounded-xl flex items-center justify-between px-3 py-4 mb-4 lg:flex-shrink-0 lg:gap-2 lg:mb-0">
           <button onClick={() => dispatch({ type: 'countItemMinus'})} className='p-2'><img src={iconMinus} alt="Minus" /></button>
           <div className="font-bold text-black">{state.countItem}</div>

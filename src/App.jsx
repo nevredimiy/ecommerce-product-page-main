@@ -9,7 +9,8 @@ const initialState = {
   countCart: 0,
   price: 125,
   oldPrice: 250,
-  sale: 50
+  sale: 50,
+  sliderSteps: 0
 }
 
 function App() {

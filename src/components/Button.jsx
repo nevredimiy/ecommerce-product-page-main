@@ -4,7 +4,7 @@ const Button = ({children}) => {
   return (
       <button className='
       w-full bg-orangeColor py-4 rounded-lg text-white font-bold
-      hover:bg-orangeColor/75 transition
+      hover:bg-orangeColor/75 transition max-w-md
     '>
         {children}
     </button>
