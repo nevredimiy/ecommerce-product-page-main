@@ -35,7 +35,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Solution URL here](https://github.com/nevredimiy/ecommerce-product-page-main/tree/mybranch)
-- Live Site URL: [Live site URL here](https://ecommercy-product-page-main.onrender.com)
+- Live Site URL: [Live site URL here](https://nevredimiy.github.io/ecommercy-product-page-main-LIVE/)
 
 ## My process
 
@@ -56,7 +56,7 @@ Repeated context and useReducer hooks. Learned new hooks react-detect-click-outs
 
 ### Useful resources
 
-- [React detect click outside](https://www.npmjs.com/package/react-detect-click-outside) 
+- [React detect click outside](https://www.npmjs.com/package/react-detect-click-outside)
 
 ## Author
 - Website - [Artem](https://writecode6.wordpress.com/%d0%be%d0%b1%d0%be-%d0%bc%d0%bd%d0%b5/)
